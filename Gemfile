@@ -1,5 +1,5 @@
-source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
-#source 'http://rubygems.org'
+#source 'http://mirror1.prod.rhcloud.com/mirror/ruby/'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.6'
 
@@ -43,3 +43,6 @@ gem 'thor', '= 0.14.6'
 
 # This needs to be installed so we can run Rails console on OpenShift directly
 gem 'minitest'
+
+# Login authentication
+gem 'devise'
