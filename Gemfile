@@ -46,3 +46,8 @@ gem 'minitest'
 
 # Login authentication
 gem 'devise'
+
+# Bugzilla integration
+gem 'taskmapper'
+gem 'taskmapper-bugzilla'
+gem 'rubyzilla', :path => '../rubyzilla'
