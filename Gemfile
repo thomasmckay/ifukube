@@ -52,11 +52,11 @@ gem 'taskmapper'
 gem 'taskmapper-bugzilla'
 gem 'taskmapper-github'
 #gem 'rubyzilla', :path => '../rubyzilla'
-gem 'rubyzilla', :git => 'git@github.com:thomasmckay/rubyzilla.git', :branch => 'taskmapper'
+gem 'rubyzilla', :git => 'git://github.com/thomasmckay/rubyzilla.git', :branch => 'taskmapper'
 
 gem 'haml'
 gem 'haml-rails'
 
 gem 'compass-rails', '~> 1.0.3'
 #gem 'alchemy', :path => '../alchemy'
-gem 'alchemy', :git => 'git@github.com:thomasmckay/alchemy.git'
+gem 'alchemy', :git => 'git://github.com/thomasmckay/alchemy.git'
