@@ -1,12 +1,12 @@
 GIT
-  remote: git@github.com:thomasmckay/alchemy.git
+  remote: git://github.com/thomasmckay/alchemy.git
   revision: 04073ba7a2d3972bc3113a8fd9a5b515138327b3
   specs:
     alchemy (1.0.0)
       rails (>= 3.0.0)
 
 GIT
-  remote: git@github.com:thomasmckay/rubyzilla.git
+  remote: git://github.com/thomasmckay/rubyzilla.git
   revision: e1c3db61046f83079f4b44fce1bc506287a68db2
   branch: taskmapper
   specs:
