@@ -14,13 +14,13 @@ class ApplicationController < ActionController::Base
     tickets = []
 
     ticket = Ticket.where(:system => :bugzilla, :number => '886253').first
-    if !ticket
+    if !ticket && ENV['BUGZILLA_USER']
       bugzilla = TaskMapper.new(:bugzilla, {:username => ENV['BUGZILLA_USER'], :password => ENV['BUGZILLA_PASSWD'], :url => 'https://bugzilla.redhat.com'})
       project = bugzilla.project('Subscription Asset Manager')
       t = project.ticket(886253)
       ticket = Ticket.from_taskmapper(t)
     end
-    tickets << ticket
+    tickets << ticket unless ticket.nil?
 
     ticket = Ticket.where(:system => :github, :number => '1260').first
     if !ticket

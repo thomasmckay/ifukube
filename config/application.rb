@@ -63,6 +63,7 @@ module RailsApp
     config.assets.initialize_on_precompile = false
 
     # Alchemy
+=begin
     config.assets.precompile << Proc.new { |path|
       if path =~ /\.(css|js)\z/
         full_path = Rails.application.assets.resolve(path).to_path
@@ -76,5 +77,6 @@ module RailsApp
         false
       end
     }
+=end
   end
 end
