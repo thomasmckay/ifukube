@@ -50,4 +50,8 @@ gem 'devise'
 # Bugzilla integration
 gem 'taskmapper'
 gem 'taskmapper-bugzilla'
+gem 'taskmapper-github'
 gem 'rubyzilla', :path => '../rubyzilla'
+
+gem 'haml'
+gem 'haml-rails'
