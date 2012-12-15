@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
   def tickets
     tickets = []
 
-    #ticket = Ticket.find_by_ticket_system(:bugzilla)
     ticket = Ticket.where(:system => :bugzilla, :number => '886253').first
     if !ticket
       bugzilla = TaskMapper.new(:bugzilla, {:username => ENV['BUGZILLA_USER'], :password => ENV['BUGZILLA_PASSWD'], :url => 'https://bugzilla.redhat.com'})
@@ -32,6 +31,7 @@ class ApplicationController < ActionController::Base
     end
     tickets << ticket
 
-    render :partial=>'tickets', :locals=>{:tickets=>tickets}
+    #render :partial=>'tickets', :locals=>{:tickets=>tickets}
+    render :tickets, :locals=>{:tickets=>tickets}
   end
 end

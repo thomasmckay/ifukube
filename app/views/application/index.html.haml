@@ -1,0 +1,12 @@
+= content_for(:content) do
+  %ul.main_elements
+    %li
+      %a{ :href => "http://convergeui.readthedocs.org/en/latest/" }
+        = "Butterfly Net"
+    %li
+      = link_to "Login Page", tickets_path
+    %li
+      = link_to "Change Password", tickets_path
+    %li
+      %a{ "href" => "/tickets" }
+        = "Tickets"

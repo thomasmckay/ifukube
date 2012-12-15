@@ -1,0 +1,22 @@
+= content_for(:appname) do
+  = "Butterfly Net"
+
+= content_for(:logo) do
+  %a{ :href => root_path, :class => "logo" }
+    = image_tag("embed/logo.png", :alt => 'Butterfly Net Logo')
+
+= content_for(:tabs) do
+  %ul
+    %li
+      %a{ :href => tickets_path, :class => 'selected' }
+        Tickets
+
+= content_for(:widgets) do
+  %a{ :href => "#", "class" => "header-widget" }
+    = "Widget 1"
+  %a{ :href => "#", "class" => "header-widget" }
+    = "Widget 2"
+  %ul.header-widget
+    %li
+      %a{ :href => "#" }
+        = "Widget 3"

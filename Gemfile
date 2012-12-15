@@ -55,3 +55,6 @@ gem 'rubyzilla', :path => '../rubyzilla'
 
 gem 'haml'
 gem 'haml-rails'
+
+gem 'compass-rails', '~> 1.0.3'
+gem 'alchemy', :path => '../alchemy'

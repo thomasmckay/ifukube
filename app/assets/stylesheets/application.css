@@ -1,13 +1,36 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
- */
+@import "compass/reset";
+@import "alchemy/composites/shell";
+@import "alchemy/composites/content_elements";
+
+.maincontent {
+  padding-top: 5px; //because of the top line under header
+
+  ul.main_elements {
+    list-style: circle;
+    padding: 20px 40px;
+
+    li {
+      display: list-item;
+      margin-top: 10px;
+      font-size: 14px;
+      font-family: $headlinefont;
+
+      a, a:visited, a:link, a:active {
+        color: $link_color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .content {
+    padding: 20px 40px;
+
+    & > h2 {
+      margin: 35px 0 0 0;
+    }
+
+    & > h3 {
+      margin: 35px 0 0 0;
+    }
+  }
+}

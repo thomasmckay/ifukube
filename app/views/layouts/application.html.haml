@@ -1,0 +1,22 @@
+<!--[if lt IE 7 ]>        <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>           <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>           <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>           <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]> <html> <![endif]-->
+
+<!-- TODO: for devise gem, still needed? -->
+<!--  <p class="notice"><%= notice %></p> -->
+<!--  <p class="alert"><%= alert %></p> -->
+
+= content_for(:stylesheets_block) do
+  = stylesheet_link_tag "application"
+
+= content_for(:javascripts_block) do
+  = javascript_include_tag "manifests/application"
+
+= render :partial => "common/header"
+
+= content_for(:footer) do
+  = render :partial => "common/footer"
+
+= render :template => 'alchemy/layouts/shell_layout'
