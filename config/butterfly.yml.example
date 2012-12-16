@@ -1,0 +1,13 @@
+# Example butterfly.yml
+# Copy to butterfly.yml or $OPENSHIFT_DATA_DIR/butterfly.yml
+
+common:
+  encrypt_key: <replace with secret key>
+
+development:
+  elastic_url: http://localhost:9200
+  elastic_logging: debug
+
+production:
+  elastic_url: http://openshift-yourname.rhcloud.com:9200
+  elastic_logging: info

@@ -15,8 +15,10 @@ class ApplicationController < ActionController::Base
 
     if params[:search].nil?
       ticket = Ticket.where(:system => :bugzilla, :number => '886253').first
-      if !ticket && ENV['BUGZILLA_USER']
-        bugzilla = TaskMapper.new(:bugzilla, {:username => ENV['BUGZILLA_USER'], :password => ENV['BUGZILLA_PASSWD'], :url => 'https://bugzilla.redhat.com'})
+      if !ticket && current_user.bugzilla_email
+        bugzilla = TaskMapper.new(:bugzilla, {:username => current_user.bugzilla_email,
+                                              :password => current_user.bugzilla_password,
+                                              :url => 'https://bugzilla.redhat.com'})
         project = bugzilla.project('Subscription Asset Manager')
         t = project.ticket(886253)
         ticket = Ticket.from_taskmapper(t)
