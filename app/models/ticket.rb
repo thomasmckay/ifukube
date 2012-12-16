@@ -1,4 +1,8 @@
 class Ticket < ActiveRecord::Base
+
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
   attr_accessible :number, :state, :system, :title, :description
 
   def self.from_taskmapper(t)
