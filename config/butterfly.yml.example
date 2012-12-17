@@ -9,5 +9,5 @@ development:
   elastic_logging: debug
 
 production:
-  elastic_url: http://openshift-yourname.rhcloud.com:9200
+  elastic_url: http://localhost:9200
   elastic_logging: info
