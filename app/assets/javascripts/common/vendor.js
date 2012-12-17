@@ -25,5 +25,5 @@
 //= require "alchemy/jquery/plugins/jquery.jscrollpane"
 //= require "alchemy/jquery/plugins/jquery.ba-bbq"
 //= require "alchemy/jquery/plugins/jquery.tipsy"
-//TODO: require "alchemy/jquery/plugins/jquery.form"
+//= require "alchemy/jquery/plugins/jquery.form"
 //= require "alchemy/jquery/plugins/jquery.periodicalupdater"
