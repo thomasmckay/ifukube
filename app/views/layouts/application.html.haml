@@ -10,9 +10,11 @@
 
 = content_for(:stylesheets_block) do
   = stylesheet_link_tag "application"
+  = yield :stylesheets
 
 = content_for(:javascripts_block) do
-  = javascript_include_tag "manifests/application"
+  = javascript_include_tag "common"
+  = yield :javascripts
 
 = render :partial => "common/header"
 

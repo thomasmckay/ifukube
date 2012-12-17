@@ -1,16 +1,16 @@
 GIT
-  remote: git://github.com/thomasmckay/alchemy.git
-  revision: 04073ba7a2d3972bc3113a8fd9a5b515138327b3
-  specs:
-    alchemy (1.0.0)
-      rails (>= 3.0.0)
-
-GIT
   remote: git://github.com/thomasmckay/rubyzilla.git
   revision: e1c3db61046f83079f4b44fce1bc506287a68db2
   branch: taskmapper
   specs:
     rubyzilla (0.1.1)
+
+GIT
+  remote: git://github.com/ui-alchemy/alchemy.git
+  revision: db1083ba123f0f1c83a5f276dde190b2d4721de9
+  specs:
+    alchemy (1.0.0)
+      rails (>= 3.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -76,7 +76,10 @@ GEM
       multipart-post (~> 1.1)
     faraday_middleware (0.9.0)
       faraday (>= 0.7.4, < 0.9)
+    fast_gettext (0.6.11)
     fssm (0.2.9)
+    gettext_i18n_rails (0.8.0)
+      fast_gettext (>= 0.4.8)
     haml (3.1.7)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -187,6 +190,7 @@ DEPENDENCIES
   compass-rails (~> 1.0.3)
   devise
   erb2haml
+  gettext_i18n_rails
   haml
   haml-rails
   jquery-rails

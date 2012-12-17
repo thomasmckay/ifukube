@@ -60,10 +60,13 @@ gem 'haml-rails'
 gem 'compass'
 gem 'compass-rails', '~> 1.0.3'
 #gem 'alchemy', :path => '../alchemy'
-gem 'alchemy', :git => 'git://github.com/thomasmckay/alchemy.git'
+gem 'alchemy', :git => 'git://github.com/ui-alchemy/alchemy.git'
 
 gem 'tire'
 
 # Handy when bringing in external erb
 # rake haml:convert_erbs
 gem 'erb2haml', :group => :development
+
+# Stuff for i18n
+gem 'gettext_i18n_rails'

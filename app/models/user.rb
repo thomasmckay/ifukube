@@ -13,6 +13,11 @@ class User < ActiveRecord::Base
   before_save :encrypt
   after_save :decrypt
 
+  # TODO: add user preference for page size
+  def page_size
+    25
+  end
+
   private
 
   # From http://philtoland.com/post/807114394/simple-blowfish-encryption-with-ruby
