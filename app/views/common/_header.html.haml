@@ -13,7 +13,7 @@
 
 = content_for(:widgets) do
   %a{ :href => "#", "class" => "header-widget" }
-    = "Widget 1"
+    = current_user.email if current_user
   %a{ :href => "#", "class" => "header-widget" }
     = "Widget 2"
   %ul.header-widget
