@@ -1,0 +1,146 @@
+
+
+#container {
+  width:  100%;
+  margin:0 auto;
+  min-height:600px;
+  position: relative;
+    /* right side of 2 pane below the sliding pane */
+    .right {
+        float:right;
+        width:448px;
+        min-height: 300px;
+        padding: 20px;
+        border: 1px solid $border_color;
+        @include border-right-radius(5px);
+        background-color: $lightergrey_color;
+        margin-top: 79px;
+        margin-right: 5px;
+        position: relative;
+        .panel_action {
+            .disabled {
+              &:hover {
+                text-decoration: none;
+                cursor: normal;
+              }
+            }
+            .options {
+              display: none;
+              @include border-radius(5px);
+              @include box-shadow(rgba(0,0,0,0.4), 2px 2px 2px);
+              background-color: white;
+              border: 1px solid $border_color;
+              padding: 15px;
+              margin: 4px auto;
+              width: 85%;
+              .actions {
+                  float: right;
+              }
+            }
+            input[type="text"], .ui-multiselect {
+              margin-left: 20px;
+            }
+            .validation_error {
+              padding-left: 20px;
+              color: $validation_error_color;
+              font-weight: 600;
+            }
+        }
+        #select-result {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 18px;
+            color: $lightgrey_color;
+        }
+        #select-none {
+            position: absolute;
+            top: 36px;
+            right: 10px;
+        }
+        .helptip_area {
+            float: left;
+            width: 62%;
+            clear: both;
+        }
+        .filter_button {
+
+
+        }
+    }
+
+    /* left side of 2 pane that has clickable links */
+    .column_panel_1 { width: 300px; }
+    .column_panel_2 { width: 375px; }
+    .column_panel_3 { width: 450px; }
+    .left {
+      float:left;
+      min-height:500px;
+      position:relative;
+      z-index: 0;
+      h2 {
+          margin-bottom: 8px;
+          width: 164px;
+          max-width: 164px;
+      }
+      #new {
+          border-bottom: 0 none;
+          padding: 8px;
+          margin: 0;
+          clear: right;
+          text-align: center;
+          width: 10em;
+          right: 0;
+          min-height: 21px;
+          height: auto;
+          font-size: 100% !important;
+          &.block{
+              &.active{
+                  .arrow-right {
+                      border-bottom: 19px solid transparent;
+                      border-left: 17px solid $kselected_color;
+                      border-top: 18px solid transparent;
+                      right: -17px;
+                  }
+                &:hover {
+                    background-color: darken($kselected_color, 10%);
+                    .arrow-right { border-left-color:darken($kselected_color, 10%); }
+                }
+              }
+              &:hover {
+                .arrow-right {
+                  border-left: 17px solid $listhover_color;
+                }
+              }
+          }
+      }
+      #heading_title {
+        font-weight: bold;
+      }
+       /* search forms */
+      .search {
+        float: right;
+        margin-bottom: 6px;
+        margin-top: 6px;
+        margin-right: 6px;
+        position: relative;
+        clear: right;
+        button {
+          position: absolute;
+          width: 16px; height: 16px;
+          text-indent: -4000em;
+          margin: -8px 0 0;
+          background-position: 0 0;
+          border: none;
+          padding: 0;
+          &:hover {
+            @include box-shadow(none);
+          }
+        }
+        input[type="text"] {
+          float: right; /* webkit adds an extra padding and makes the widget narrower */
+          width: 185px;
+        }
+      }
+    }
+}
