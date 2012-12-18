@@ -1,4 +1,4 @@
-# Ifukube ~ Catching Pretty Bugs #
+# Ifukube ~ Compositions For Your Bugzilla #
 
 Setup postgresql database
 
