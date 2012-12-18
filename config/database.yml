@@ -2,9 +2,9 @@ test:
   adapter: postgresql
   encoding: utf8
   pool: 5
-  database: butterfly
-  username: butterfly
-  password: butterfly
+  database: ifukube
+  username: ifukube
+  password: ifukube
   host: localhost
   timeout: 5000
 
@@ -12,9 +12,9 @@ development:
   adapter: postgresql
   encoding: utf8
   pool: 5
-  database: butterfly
-  username: butterfly
-  password: butterfly
+  database: ifukube
+  username: ifukube
+  password: ifukube
   host: localhost
   timeout: 5000
 

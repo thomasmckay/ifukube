@@ -11,9 +11,9 @@ module ApplicationConfiguration
     LOG_LEVELS = ['debug', 'info', 'warn', 'error', 'fatal']
 
     def initialize
-      @config_file = "#{Rails.root}/config/butterfly.yml"
-      @config_file = "#{ENV['OPENSHIFT_DATA_DIR']}/butterfly.yml" unless File.exists? @config_file
-      raise "Missing butterfly.yml config" unless File.exists? @config_file
+      @config_file = "#{Rails.root}/config/ifukube.yml"
+      @config_file = "#{ENV['OPENSHIFT_DATA_DIR']}/ifukube.yml" unless File.exists? @config_file
+      raise "Missing ifukube.yml config" unless File.exists? @config_file
 
       config = YAML::load_file(@config_file)
       @hash = config['common'] || {}
@@ -39,7 +39,7 @@ module ApplicationConfiguration
         version = "git hash (" + hash.chop + ")"
       end
 
-      @ostruct.butterfly_version = version
+      @ostruct.ifukube_version = version
     end
 
     # helper method that converts object to open struct recursively
