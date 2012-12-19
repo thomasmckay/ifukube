@@ -19,3 +19,5 @@
 
 # Ignore config file
 /config/ifukube.yml
+
+*.swp

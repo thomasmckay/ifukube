@@ -1,17 +1,12 @@
+= stylesheet :login
+
 = content_for(:content) do
-  %h2 Sign in
-  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-    %div
-      = f.label :email
-      %br/
-      = f.email_field :email
-    %div
-      = f.label :password
-      %br/
-      = f.password_field :password
-    - if devise_mapping.rememberable?
-      %div
-        = f.check_box :remember_me
-        = f.label :remember_me
-    %div= f.submit "Sign in"
-  = render "devise/shared/links"
+  = render :partial => "alchemy/layouts/login_layout",
+           :locals => { :login_form_path_string => session_path(resource_name),
+                        :recovery_strings => raw(get_string(:recovery_link) % {:username => link_to(get_string(:username), user_session_path(:card => :username_recovery), :id => "username_link"),
+                                                                          :password => link_to(get_string(:password), user_session_path(:card => :password_reset), :id => "password_link")} + "<div class='registration_link'>No account? #{link_to("Register", new_registration_path(resource_name))}</div>"),
+                        :login_path_string => user_session_path,
+                        :new_username_recoveries_form_path_string => user_session_path,
+                        :new_password_resets_form_path_string => user_session_path }
+
+= render :file => "alchemy/layouts/_user_session_layout"
