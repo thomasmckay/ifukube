@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     if order
       return order.split("|")
     else
-      [:name_sort, "ASC"]
+      [:number, "ASC"]
     end
   end
 

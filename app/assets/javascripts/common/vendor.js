@@ -27,3 +27,4 @@
 //= require "alchemy/jquery/plugins/jquery.tipsy"
 //= require "alchemy/jquery/plugins/jquery.form"
 //= require "alchemy/jquery/plugins/jquery.periodicalupdater"
+//= require "alchemy/jquery/plugins/jquery.fancyqueries"

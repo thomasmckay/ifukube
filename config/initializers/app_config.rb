@@ -21,6 +21,7 @@ module ApplicationConfiguration
 
       @ostruct = hashes2ostruct(@hash)
 
+      @ostruct.elastic_index = 'ifukube'
       @ostruct.elastic_url = 'http://localhost:9200' unless @ostruct.respond_to?(:elastic_url)
       @ostruct.elastic_logging = 'info' unless @ostruct.respond_to?(:elastic_logging)
 

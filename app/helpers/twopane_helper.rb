@@ -12,6 +12,7 @@ module TwopaneHelper
     all_rows = false
     skip_render = search_options[:skip_render] || false
     page_size = search_options[:page_size] || current_user.page_size
+    start ||= 0
 
     if search.nil? || search== ''
       all_rows = true
@@ -89,7 +90,6 @@ module TwopaneHelper
     options[:total_count] ||= results.empty? ? 0 : results.total
     options[:total_results] = total
     options[:collection] = results
-    options[:columns] = options[:col]
     @items = results
 
     if options[:list_partial]
@@ -97,7 +97,7 @@ module TwopaneHelper
     elsif options[:render_list_proc]
       rendered_html = options[:render_list_proc].call(@items, options)
     else
-      rendered_html = render_to_string(:partial=>"common/list_items", :locals=>options)
+      rendered_html = render_to_string(:partial=>"common/twopane_list_items", :locals=>options)
     end
 
 
@@ -118,7 +118,6 @@ module TwopaneHelper
     @items = items
 
     options[:accessor] ||= "id"
-    options[:columns] = options[:col]
     options[:initial_action] ||= :edit
 
     if start == "0"
@@ -142,7 +141,7 @@ module TwopaneHelper
     if options[:list_partial]
       rendered_html = render_to_string(:partial=>options[:list_partial], :locals=>options)
     else
-      rendered_html = render_to_string(:partial=>"common/list_items", :locals=>options)
+      rendered_html = render_to_string(:partial=>"common/twopane_list_items", :locals=>options)
     end
 
     render :json => {:html => rendered_html,

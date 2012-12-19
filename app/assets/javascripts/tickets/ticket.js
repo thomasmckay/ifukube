@@ -16,5 +16,16 @@ $(document).ready(function() {
     var twopane_options = {};
     KT.panel.list.registerPage( 'tickets', twopane_options);
 
+    KT.tickets_page.registerActions();
 });
+
+KT.tickets_page = (function() {
+    registerActions = function() {
+        // empty
+    };
+
+    return {
+        registerActions : registerActions
+    };
+})();
 

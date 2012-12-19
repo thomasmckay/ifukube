@@ -1,9 +1,17 @@
 class Ticket < ActiveRecord::Base
 
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
+  include IndexedModel
 
   attr_accessible :number, :state, :system, :title, :description
+
+  index_options :extended_json=>:extended_index_attrs,
+                :json=>{:only=> [:number, :state, :system, :title, :description]},
+                :display_attrs => [:number, :state, :system, :title, :description]
+
+  def extended_index_attrs
+    {}
+  end
+
 
   def self.from_taskmapper(t)
     ticket = self.create
