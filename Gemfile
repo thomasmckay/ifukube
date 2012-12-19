@@ -57,6 +57,9 @@ gem 'rubyzilla', :git => 'git://github.com/thomasmckay/rubyzilla.git', :branch =
 gem 'haml'
 gem 'haml-rails'
 
+gem 'compass-960-plugin', '>= 0.10.4', :require => 'ninesixty'
+gem 'simple-navigation', '>= 3.3.4'
+
 gem 'compass'
 gem 'compass-rails', '~> 1.0.3'
 #gem 'alchemy', :path => '../alchemy'
