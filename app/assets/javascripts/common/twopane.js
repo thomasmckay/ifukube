@@ -956,8 +956,6 @@ KT.panel.list = (function () {
         registerPage = function (resource_type, options) {
             options = options || {};
 
-            // TODO: search
-            /*
             search = KT.search("search_form", "list", this,
                 {url: $("#list").attr("data-scroll_url")}, options['extra_params']);
 
@@ -966,7 +964,6 @@ KT.panel.list = (function () {
             if (KT.panel_search_autocomplete){
               search.enableAutoComplete({data:KT.panel_search_autocomplete});
             }
-            */
 
             $(window).trigger('hashchange');
 
