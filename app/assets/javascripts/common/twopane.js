@@ -361,7 +361,7 @@ KT.panel = (function ($) {
                     });
 
                     KT.common.jscroll_init($('.scroll-pane'));
-    				        KT.common.jscroll_resize($('.jspPane'));
+                    KT.common.jscroll_resize($('.jspPane'));
 
                     if (isSubpanel) {
                         panelResize($('#subpanel_main'), isSubpanel);
@@ -372,7 +372,7 @@ KT.panel = (function ($) {
                     KT.panel.copy.initialize();
 
                     for( callback in expand_cb ){
-                    	expand_cb[callback](name);
+                        expand_cb[callback](name);
                     }
                     // Add a handler for ellipsis
                     $(".one-line-ellipsis").ellipsis(true);
@@ -798,6 +798,9 @@ KT.panel = (function ($) {
 
 KT.panel.copy = (function () {
     var initialize = function() {
+        // TODO: copy not working
+        return;
+            
         // This function will initialize the support for copy, if copy is defined for the pane.  In katello, one
         // example of this can be found in app/views/system_groups/_tupane_header.html.haml.
 
@@ -1008,7 +1011,7 @@ KT.panel.list = (function () {
             }
         },
         createSuccess = function(data){
-        	var id;
+            var id;
 
             if (data['no_match']) {
                 KT.panel.closePanel($('#panel'));
@@ -1036,12 +1039,12 @@ KT.panel.list = (function () {
             }
         };
     return {
-        extended_event	: function () { if(search){search.extend_event()} },
-        registerPage	: registerPage,
-        createSuccess	: createSuccess,
-        remove			: remove,
-        refresh			: refresh,
-        append		    : append,
+        extended_event  : function () { if(search){search.extend_event()} },
+        registerPage    : registerPage,
+        createSuccess   : createSuccess,
+        remove          : remove,
+        refresh         : refresh,
+        append          : append,
         replace_list    : replace_list,
         update_counts   : update_counts,
         full_spinner    : full_spinner,

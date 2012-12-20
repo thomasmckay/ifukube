@@ -9,6 +9,9 @@ RailsApp::Application.routes.draw do
       get :auto_complete_search
       get :items
     end
+    member do
+      get :edit
+    end
   end
 
   # Search
