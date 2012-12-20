@@ -1,11 +1,11 @@
-module TwopaneHelper
+module TupaneHelper
   # search_options
   #    :default_field - The field that should be used by the search engine when a user performs
   #                     a search without specifying field.
   #    :filter  -  Filter to apply to search. Array of hashes.  Each key/value within the hash
   #                  is OR'd, whereas each HASH itself is AND'd together
   #    :load  - whether or not to load the active record object (defaults to false)
-  def render_twopane(obj_class, twopane_options, search, start, sort, search_options={})
+  def render_tupane(obj_class, tupane_options, search, start, sort, search_options={})
 
     filters = search_options[:filter] || []
     load = search_options[:load] || false
@@ -24,8 +24,8 @@ module TwopaneHelper
     query_options = {}
     query_options[:default_field] = search_options[:default_field] unless search_options[:default_field].blank?
 
-    twopane_options[:accessor] ||= "id"
-    twopane_options[:initial_action] ||= :edit
+    tupane_options[:accessor] ||= "id"
+    tupane_options[:initial_action] ||= :edit
 
     @items = []
 
@@ -53,7 +53,7 @@ module TwopaneHelper
       if load
         @items = obj_class.where(:id=>results.collect{|r| r.id})
         #set total since @items will be just an array
-        twopane_options[:total_count] = results.empty? ? 0 : results.total
+        tupane_options[:total_count] = results.empty? ? 0 : results.total
         if @items.length != results.length
           Rails.logger.error("Failed to retrieve all #{obj_class} search results " +
                              "(#{@items.length}/#{results.length} found.)")
@@ -79,10 +79,10 @@ module TwopaneHelper
       Rails.logger.error(e.class)
 
       total_count = 0
-      twopane_options[:total_results] = 0
+      tupane_options[:total_results] = 0
     end
 
-    render_panel_results(@items, total_count, twopane_options) if !skip_render
+    render_panel_results(@items, total_count, tupane_options) if !skip_render
     return @items
   end
 
@@ -97,7 +97,7 @@ module TwopaneHelper
     elsif options[:render_list_proc]
       rendered_html = options[:render_list_proc].call(@items, options)
     else
-      rendered_html = render_to_string(:partial=>"common/twopane_list_items", :locals=>options)
+      rendered_html = render_to_string(:partial=>"common/tupane_list_items", :locals=>options)
     end
 
 
@@ -141,7 +141,7 @@ module TwopaneHelper
     if options[:list_partial]
       rendered_html = render_to_string(:partial=>options[:list_partial], :locals=>options)
     else
-      rendered_html = render_to_string(:partial=>"common/twopane_list_items", :locals=>options)
+      rendered_html = render_to_string(:partial=>"common/tupane_list_items", :locals=>options)
     end
 
     render :json => {:html => rendered_html,
@@ -172,7 +172,7 @@ module TwopaneHelper
   end
 =end
 
-  def render_twopane_view(collection, options)
+  def render_tupane_view(collection, options)
     options[:accessor] ||= "id"
     options[:left_panel_width] ||= nil
     options[:ajax_load] ||= false
@@ -182,7 +182,7 @@ module TwopaneHelper
 
     raise ":titles option not provided" unless options[:titles]
 
-    render :partial => "common/twopane",
+    render :partial => "common/tupane",
       :locals => {
         :title => options[:title],
         :name => options[:name],

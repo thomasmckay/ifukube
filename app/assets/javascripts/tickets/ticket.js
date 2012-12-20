@@ -13,8 +13,8 @@
 
 $(document).ready(function() {
 
-    var twopane_options = {};
-    KT.panel.list.registerPage( 'tickets', twopane_options);
+    var tupane_options = {};
+    KT.panel.list.registerPage( 'tickets', tupane_options);
 
     KT.tickets_page.registerActions();
 });

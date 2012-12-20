@@ -5,9 +5,9 @@ class TicketsController < ApplicationController
   require 'taskmapper-bugzilla'
   require 'taskmapper-github'
 
-  include TwopaneHelper
+  include TupaneHelper
 
-  before_filter :setup_twopane, :only => [:index, :items]
+  before_filter :setup_tupane, :only => [:index, :items]
   before_filter :find_ticket, :only => [:edit]
 
   def index
@@ -32,25 +32,25 @@ class TicketsController < ApplicationController
   end
 
   def items
-    render_twopane(Ticket, @twopane_options,
+    render_tupane(Ticket, @tupane_options,
                    params[:search], params[:offset], split_order_param(params[:order]),
                    { :default_field => :number})
   end
 
   def edit
     @locals_hash = { :ticket => @ticket }
-    render :partial => 'edit', :layout => 'twopane_layout', :locals => @locals_hash
+    render :partial => 'edit', :locals => @locals_hash
   end
 
   def new
     @locals_hash = { }
-    render :partial => 'new', :layout => 'twopane_layout', :locals => @locals_hash
+    render :partial => 'new', :locals => @locals_hash
   end
 
   private
 
-  def setup_twopane
-    @twopane_options = {
+  def setup_tupane
+    @tupane_options = {
       :name          => 'ticket',
       :search_class  => Ticket,
 

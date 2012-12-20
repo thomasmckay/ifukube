@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  include TwopaneHelper
+  include TupaneHelper
   include Alchemy::TranslationHelper
 
 end
