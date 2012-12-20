@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  include AutoCompleteSearch
 
   require 'taskmapper'
   require 'taskmapper-bugzilla'
@@ -7,6 +8,7 @@ class TicketsController < ApplicationController
   include TwopaneHelper
 
   before_filter :setup_twopane, :only => [:index, :items]
+  before_filter :find_ticket, :only => [:edit]
 
   def index
 
@@ -35,20 +37,41 @@ class TicketsController < ApplicationController
                    { :default_field => :number})
   end
 
+  def edit
+    @locals_hash = { :ticket => @ticket }
+    render :partial => 'edit', :layout => 'twopane_layout', :locals => @locals_hash
+  end
+
+  def new
+    @locals_hash = { }
+    render :partial => 'new', :layout => 'twopane_layout', :locals => @locals_hash
+  end
+
   private
 
   def setup_twopane
     @twopane_options = {
+      :name          => 'ticket',
+      :search_class  => Ticket,
+
       :title         => 'Tickets',
       :columns       => ['number'],
-      :titles        => ['Number'],
+      :titles        => ['Ticket Number'],
+
+      :enable_create => true,
+      :create        => _('Ticket'),
       :create_label  => _('+ New Ticket'),
-      :name          => 'ticket',
+
       :ajax_load     => true,
       :ajax_scroll   => items_tickets_path(),
-      :enable_create => true,
-      :search_class  => Ticket
+
+      :custom_rows   => true,
+      :list_partial  => 'tickets/list_tickets'
     }
+  end
+
+  def find_ticket
+    @ticket = Ticket.find(params[:id])
   end
 
 end

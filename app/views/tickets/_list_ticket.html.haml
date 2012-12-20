@@ -1,3 +1,3 @@
-.block.tall{:id => "#{name}_#{item.send(accessor)}", "data-ajax_url" => "#{url_for(:controller=>controller.controller_name)}/#{item.send(accessor)}", "data-ajax_panelpage" => @panel_options[:initial_action]}
-  = render :partial=>"systems/list_ticket_show", :locals=>{:item => item}
+.block.tall{:id => "#{name}_#{ticket.send(accessor)}", "data-ajax_url" => "#{url_for(:controller=>controller.controller_name)}/#{ticket.send(accessor)}", "data-ajax_panelpage" => @twopane_options[:initial_action]}
+  = render :partial=>"tickets/list_ticket_show", :locals=>{:ticket => ticket}
 

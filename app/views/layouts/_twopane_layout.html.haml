@@ -1,0 +1,39 @@
+- if content_for?(:content) or content_for?(:subcontent)
+
+  - if content_for?(:title)
+    .head
+      - title_text = content_for :title
+      %h2.pane_heading.one-line-ellipsis{:title => title_text}
+        = content_for :title
+      = content_for :remove_item
+
+  %nav.subnav.clear
+    - if content_for?(:navigation)
+      = content_for :navigation
+
+  - if content_for?(:header)
+    .tupane_header
+      = content_for :header
+
+  - if content_for?(:content)
+    %a.close{:href => "#", "data-close"=>"panel"} #{_("Close")}
+    #panel_main.scroll-pane
+      = content_for :content
+
+  - if content_for?(:subcontent)
+    %a.close{:href => "#", "data-close"=>"subpanel"} #{_("Close")}
+    #subpanel_main.scroll-pane
+      = content_for :subcontent
+
+- if content_for?(:footer)
+  .tupane_footer
+    = content_for :footer
+
+- if content_for?(:custom)
+  = content_for :custom
+
+- if content_for?(:inline_javascript)
+  %script{ :type => "text/javascript" }
+    = content_for :inline_javascript
+= content_for :javascripts
+= content_for :stylesheets
