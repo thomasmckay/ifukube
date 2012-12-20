@@ -13,4 +13,4 @@
 //= require "common/vendor"
 //= require "common/ifukube"
 //= require "common/search"
-//= require "common/twopane"
+//= require "common/tupane"

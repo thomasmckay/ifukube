@@ -27,7 +27,7 @@
         .panel_action{'data-id'=>"select_none"}
           #select-result
           %a#select-none #{_("Select None")}
-  = render :partial=>"common/twopane_panel"
+  = render :partial=>"common/tupane_panel"
 
   %div.left{:class => left_panel_width ? left_panel_width : 'column_panel_' + columns.length.to_s }
     #list-title
@@ -45,7 +45,7 @@
         -# The javascript, though, needs the spans to update the values. Solution is this raw html.
         = raw _("Viewing %{current} of %{results} results (%{items} Total %{name})") % {:current => '<span id="current_items_count">0</span>', :results => '<span id="total_results_count">0</span>', :items => '<span id="total_items_count">0</span>', :name => title}
 
-      -# TODO: user saved search history - move out of twopane and pass in from user pref
+      -# TODO: user saved search history - move out of tupane and pass in from user pref
       - if url.nil?
         %form#search_form.search{"data-url" => search_index_path()}
           = text_field_tag(:search, params[:search], {:type => "text", :placeholder => _("Search..."), :class => "auto_complete_input ui-autocomplete-input"})
@@ -73,6 +73,6 @@
           = render_rows(:collection=>collection, :columns=>columns, :accessor=>accessor, :name=>name)
       - else
         %section
-          = render :partial=>"common/twopane_list_item", :collection=>collection, :as=>:item, :locals=>{:accessor=>accessor, :columns=>columns, :name=>name, :initial_action=>initial_action}
+          = render :partial=>"common/tupane_list_item", :collection=>collection, :as=>:item, :locals=>{:accessor=>accessor, :columns=>columns, :name=>name, :initial_action=>initial_action}
 
     %br.clear
