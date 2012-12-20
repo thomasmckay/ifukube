@@ -23,6 +23,7 @@ RailsApp::Application.routes.draw do
     member do
       get :edit
       get :new
+      post :create
     end
   end
 

@@ -7,21 +7,27 @@ class TicketsController < ApplicationController
 
   include TupaneHelper
 
-  before_filter :setup_tupane, :only => [:index, :items]
+  before_filter :setup_tupane, :only => [:index, :items, :create]
   before_filter :find_ticket, :only => [:edit]
 
-  def index
-
-    # TODO: just temporary to load up some tickets
-    ticket = Ticket.where(:system => :bugzilla, :number => '886253').first
+  def tmp_get_bugzilla(number)
+    ticket = Ticket.where(:system => :bugzilla, :number => number).first
     if !ticket && current_user.bugzilla_email
       bugzilla = TaskMapper.new(:bugzilla, {:username => current_user.bugzilla_email,
                                             :password => current_user.bugzilla_password,
                                             :url => 'https://bugzilla.redhat.com'})
       project = bugzilla.project('Subscription Asset Manager')
-      t = project.ticket(886253)
+      t = project.ticket(number)
       ticket = Ticket.from_taskmapper(t)
     end
+  end
+
+  def index
+
+    # TODO: just temporary to load up some tickets
+    ticket = tmp_get_bugzilla('886253')
+    ticket = tmp_get_bugzilla('873805')
+    ticket = tmp_get_bugzilla('837143')
     ticket = Ticket.where(:system => :github, :number => '1260').first
     if !ticket
       github = TaskMapper.new(:github, {:login => 'Katello'})
@@ -38,13 +44,48 @@ class TicketsController < ApplicationController
   end
 
   def edit
-    @locals_hash = { :ticket => @ticket }
+    @locals_hash = { :ticket => @ticket, :tickets => [@ticket, @ticket, @ticket] }
     render :partial => 'edit', :locals => @locals_hash
   end
 
   def new
     @locals_hash = { }
     render :partial => 'new', :locals => @locals_hash
+  end
+
+  def create
+    system = params[:ticket][:system].downcase
+    number = params[:ticket][:number]
+
+    if system == 'bugzilla'
+      ticket = Ticket.where(:system => :bugzilla, :number => number).first
+      if !ticket && current_user.bugzilla_email
+        bugzilla = TaskMapper.new(:bugzilla, {:username => current_user.bugzilla_email,
+                                              :password => current_user.bugzilla_password,
+                                              :url => 'https://bugzilla.redhat.com'})
+
+        t = bugzilla.ticket.find_by_id(number)
+        ticket = Ticket.from_taskmapper(t)
+      end
+    else
+      ticket = Ticket.where(:system => :github, :number => number).first
+      if !ticket
+        github = TaskMapper.new(:github, {:login => 'Katello'})
+        project = github.project('katello')
+        t = project.ticket(number)
+        ticket = Ticket.from_taskmapper(t)
+      end
+    end
+
+    if ticket
+      # TODO: hook up notices, how?
+      #notify.succcess _("%{ticket_name} created successfully") % {:ticket_name => ticket.short_name}
+      # TODO: what should collection be here?
+      locals_hash = { :ticket => @ticket, :accessor => 'id', :collection => [@ticket] }
+      render :partial => 'tickets/list_tickets', :locals => locals_hash
+    else
+      render :json => { :no_match => true }
+    end
   end
 
   private

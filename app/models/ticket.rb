@@ -12,7 +12,6 @@ class Ticket < ActiveRecord::Base
     {}
   end
 
-
   def self.from_taskmapper(t)
     ticket = self.create
     ticket.state = t.state
@@ -28,5 +27,16 @@ class Ticket < ActiveRecord::Base
     ticket.save
 
     ticket
+  end
+
+  def short_name
+    case self.system
+      when 'bugzilla'
+        "BZ #{self.number}"
+      when 'github'
+        "GIT #{self.number}"
+      else
+        "#{self.number}"
+    end
   end
 end
