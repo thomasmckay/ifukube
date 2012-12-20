@@ -73,3 +73,7 @@ gem 'erb2haml', :group => :development
 
 # Stuff for i18n
 gem 'gettext_i18n_rails'
+
+group :development do
+  gem 'debugger'
+end
