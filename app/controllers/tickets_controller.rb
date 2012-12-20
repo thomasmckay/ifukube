@@ -42,6 +42,11 @@ class TicketsController < ApplicationController
     render :partial => 'edit', :layout => 'twopane_layout', :locals => @locals_hash
   end
 
+  def new
+    @locals_hash = { }
+    render :partial => 'new', :layout => 'twopane_layout', :locals => @locals_hash
+  end
+
   private
 
   def setup_twopane

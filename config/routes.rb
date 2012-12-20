@@ -11,6 +11,7 @@ RailsApp::Application.routes.draw do
     end
     member do
       get :edit
+      get :new
     end
   end
 
