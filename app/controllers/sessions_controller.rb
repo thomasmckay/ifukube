@@ -8,7 +8,11 @@ class SessionsController < Devise::SessionsController
     self.resource = warden.authenticate!(auth_options)
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    redirect_to root_path
+
+    respond_to do |format|
+      format.html { redirect_to tickets_path }
+      format.js { render :js => "window.location.href = '#{root_path}'" }
+    end
   end
 
 end
