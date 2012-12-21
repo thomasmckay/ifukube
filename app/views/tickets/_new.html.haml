@@ -2,6 +2,32 @@
   #{_('New Ticket')}
 
 = content_for :content do
-  %h1 ABC DEF
+  = alchemy_form_for(Ticket.new, :action => 'create', :id => 'new_ticket') do |form|
+    .control_group
+      .label
+        %label Ticketing System
+      .input
+        = form.select :system, ['Bugzilla', 'Github']
+        -#%select
+        -#  %option
+        -#    = "Bugzilla"
+        -#  %option
+        -#    = "Github"
+
+    .control_group
+      .label
+        %label{:for => "number"} Number
+      .input
+        = form.text_field :number
+    -#.control_group
+    -#  .label
+    -#    %label{:for => "number"} Number
+    -#  .input
+    -#    %input{:type => "text", :id => "number", :required => "required"}
+
+    .control_group.buttons
+      .label
+      .input
+        %input.btn.primary{:type => "submit", :value => "Save"}
 
 = render :file => "layouts/tupane_layout"

@@ -1,0 +1,21 @@
+// variable overrides
+$input_width: 100px;
+
+// style overrides
+.form {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="date"],
+  input[type="number"],
+  textarea {
+    width: $input_width;
+  }
+
+  .value {
+    width: $input_width;
+    padding: 6px 10px;
+  }
+}

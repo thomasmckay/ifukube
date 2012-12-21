@@ -62,8 +62,8 @@ gem 'simple-navigation', '>= 3.3.4'
 
 gem 'compass'
 gem 'compass-rails', '~> 1.0.3'
-#gem 'alchemy', :path => '../alchemy'
-gem 'alchemy', :git => 'git://github.com/ui-alchemy/alchemy.git'
+#gem 'alchemy', :path => '../alchemy', :branch => 'simple_form'
+gem 'alchemy', :git => 'git://github.com/ui-alchemy/alchemy.git', :branch => 'simple_form'
 
 gem 'tire'
 
@@ -74,6 +74,6 @@ gem 'erb2haml', :group => :development
 # Stuff for i18n
 gem 'gettext_i18n_rails'
 
-group :development do
-  gem 'debugger'
-end
+#group :development do
+#  gem 'debugger'
+#end
