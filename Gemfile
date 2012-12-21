@@ -52,7 +52,7 @@ gem 'taskmapper'
 gem 'taskmapper-bugzilla'
 gem 'taskmapper-github'
 #gem 'rubyzilla', :path => '../rubyzilla'
-gem 'rubyzilla', :git => 'git://github.com/thomasmckay/rubyzilla.git', :branch => 'taskmapper'
+gem 'rubyzilla', :git => 'git://github.com/Ifukube/rubyzilla.git', :branch => 'taskmapper'
 
 gem 'haml'
 gem 'haml-rails'
