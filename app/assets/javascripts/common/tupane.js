@@ -279,6 +279,7 @@ KT.panel = (function ($) {
             var activeBlock = $('#' + KT.common.escapeId(activeBlockId)),
                 ajax_url = activeBlock.attr("data-ajax_url"),
                 ajax_panelpage = activeBlock.attr("data-ajax_panelpage"),
+                ajax_extra_params = activeBlock.attr("data-ajax_extra_params"),
                 full_ajax_url,
                 previousBlockId = null;
 
@@ -290,6 +291,10 @@ KT.panel = (function ($) {
                 full_ajax_url = ajax_url + '/' + last_ajax_panelpage;
             } else {
                 full_ajax_url = ajax_url;
+            }
+
+            if (ajax_extra_params) {
+                full_ajax_url += ajax_extra_params;
             }
 
             thisPanel = $("#panel");

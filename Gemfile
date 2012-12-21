@@ -49,10 +49,18 @@ gem 'devise'
 
 # Bugzilla integration
 gem 'taskmapper'
-gem 'taskmapper-bugzilla'
+if File.exists? File.expand_path('../taskmapper-bugzilla')
+  gem 'taskmapper-bugzilla', :path => '../taskmapper-bugzilla'
+else
+  gem 'taskmapper-bugzilla', :git => 'git://github.com/Ifukube/taskmapper-bugzilla.git'
+end
 gem 'taskmapper-github'
-#gem 'rubyzilla', :path => '../rubyzilla'
-gem 'rubyzilla', :git => 'git://github.com/Ifukube/rubyzilla.git', :branch => 'taskmapper'
+
+if File.exists? File.expand_path('../rubyzilla')
+  gem 'rubyzilla', :path => '../rubyzilla'
+else
+  gem 'rubyzilla', :git => 'git://github.com/Ifukube/rubyzilla.git', :branch => 'taskmapper'
+end
 
 gem 'haml'
 gem 'haml-rails'
@@ -62,8 +70,12 @@ gem 'simple-navigation', '>= 3.3.4'
 
 gem 'compass'
 gem 'compass-rails', '~> 1.0.3'
-#gem 'alchemy', :path => '../alchemy', :branch => 'simple_form'
-gem 'alchemy', :git => 'git://github.com/ui-alchemy/alchemy.git', :branch => 'simple_form'
+
+if File.exists? File.expand_path('../alchemy')
+  gem 'alchemy', :path => '../alchemy'
+else
+  gem 'alchemy', :git => 'git://github.com/ui-alchemy/alchemy.git', :branch => 'simple_form'
+end
 
 gem 'tire'
 
