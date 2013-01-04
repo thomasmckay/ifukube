@@ -2,14 +2,21 @@
   = "Ifukube"
 
 = content_for(:logo) do
-  %a{ :href => root_path, :class => "logo" }
-    = image_tag("embed/ifukube.png", :alt => 'Ifukube')
+  %a{ :href => root_path, :class => 'ifukube_logo' }
+    %h2
+      伊福部 昭
+    %h6
+      Bugzilla Maestro
 
 = content_for(:tabs) do
   %ul
     %li
       %a{ :href => tickets_path, :class => 'selected' }
         Tickets
+    - Filter.all.each do |filter|
+      %li
+        %a{ :href => "#{tickets_path(:filter => filter.name)}#list_search=#{filter.filter}", :class => 'selected' }
+          = filter.name
 
 = content_for(:widgets) do
   = link_to _("Log Out"), destroy_user_session_path, :method => :delete, :class => "header-widget"

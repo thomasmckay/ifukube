@@ -24,6 +24,14 @@ RailsApp::Application.routes.draw do
       get :edit
       get :new
       post :create
+      post :update
+    end
+  end
+
+  resources :ticket_bundles do
+    member do
+      post :create
+      post :update
     end
   end
 

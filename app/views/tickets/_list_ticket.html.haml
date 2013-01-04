@@ -1,3 +1,9 @@
-.block.tall{:id => "#{name}_#{ticket.send(accessor)}", "data-ajax_url" => "#{url_for(:controller=>controller.controller_name)}/#{ticket.send(accessor)}", "data-ajax_panelpage" => @tupane_options[:initial_action]}
-  = render :partial=>"tickets/list_ticket_show", :locals=>{:ticket => ticket}
+-# TODO: need to figure out how to clear elastic search
+- if !ticket.system.nil?
+  .block.tall{:id => "#{name}_#{ticket.send(accessor)}", |
+            "data-ajax_url" => "#{url_for(:controller=>controller.controller_name)}/#{ticket.send(accessor)}", |
+            "data-ajax_panelpage" => @tupane_options[:initial_action], |
+            "data-ajax_extra_params" => (@filter ? "?filter=#{@filter.name}" : '') |
+           } |
+    = render :partial=>"tickets/list_ticket_show", :locals=>{:ticket => ticket}
 
