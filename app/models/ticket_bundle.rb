@@ -12,10 +12,10 @@ class TicketBundle
 
     tickets.each do |ticket|
       attributes.each do |name|
-        self.metaclass.send(:define_method, "#{name}_#{ticket.id}") do |v={}|
+        self.metaclass.send(:define_method, "#{name}_#{ticket.number}") do |v={}|
           ticket.send(name)
         end
-        self.metaclass.send(:define_method, "#{name}_#{ticket.id}=") do |v|
+        self.metaclass.send(:define_method, "#{name}_#{ticket.number}=") do |v|
           ticket.send(name, v)
         end
         #send("#{name}_#{ticket.id}=", ticket.send(name))
