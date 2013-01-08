@@ -47,10 +47,7 @@
           = _('Status')
       .input
         - tickets.each do |t|
-          - if t.is_bugzilla?
-            = form.select "state_#{t.id}", ['NEW', 'ASSIGNED', 'MODIFIED', 'ON_DEV', 'ON_QA', 'RELEASE_PENDING', 'POST', 'CLOSED'], :selected => t.state
-          - elsif t.is_github?
-            = form.select "state_#{t.id}", ['OPEN', 'CLOSED'], :selected => t.state
+          = form.select "state_#{t.id}", ['NEW', 'ASSIGNED', 'MODIFIED', 'ON_DEV', 'ON_QA', 'RELEASE_PENDING', 'POST', 'CLOSED'], :selected => t.state
 
     .control_group
       .label
@@ -58,10 +55,7 @@
           = _('Severity')
       .input
         - tickets.each do |t|
-          - if t.is_bugzilla?
-            = form.select "severity_#{t.id}", ['unspecified', 'urgent', 'high', 'medium', 'low'], :selected => t.severity
-          - elsif t.is_github?
-            = form.select "severity_#{t.id}", ['unspecified'], :selected => t.severity
+          = form.select "severity_#{t.id}", ['unspecified', 'urgent', 'high', 'medium', 'low'], :selected => t.severity
 
     .control_group.informative
       .label

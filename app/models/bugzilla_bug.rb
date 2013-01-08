@@ -28,11 +28,14 @@ class BugzillaBug < ActiveRecord::Base
   end
 
   def dependencies
-    json = JSON.parse(self.system_data)
-    deps = []
-    deps += json['depends_on']
-    deps += json['blocks']
-    deps
+    []
+
+    # TODO: save dependency fields
+    #json = JSON.parse(self.system_data)
+    #deps = []
+    #deps += json['depends_on']
+    #deps += json['blocks']
+    #deps
   end
 
   # load Bugzilla data from TaskMapper task

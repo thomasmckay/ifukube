@@ -1,27 +1,22 @@
-GIT
-  remote: git://github.com/Ifukube/rubyzilla.git
-  revision: 0e16e912ec26f0629452f4bc9c4c2cee23e5c210
-  branch: taskmapper
-  specs:
-    rubyzilla (0.1.1)
-
-GIT
-  remote: git://github.com/Ifukube/taskmapper-bugzilla.git
-  revision: e38ae4837b9c08f15706953d2c942fad0b7a94e9
-  specs:
-    taskmapper-bugzilla (0.3.0)
-      rubyzilla (~> 0.1)
-      taskmapper (~> 0.8)
-
-GIT
-  remote: git://github.com/ui-alchemy/alchemy.git
-  revision: bc577b948663a40fa7467ea0440ebac17c6016d4
-  branch: simple_form
+PATH
+  remote: ../alchemy
   specs:
     alchemy (1.0.0)
       compass (>= 0.11.5)
       rails (~> 3.2.6)
       simple_form (~> 2.0.3)
+
+PATH
+  remote: ../rubyzilla
+  specs:
+    rubyzilla (0.1.1)
+
+PATH
+  remote: ../taskmapper-bugzilla
+  specs:
+    taskmapper-bugzilla (0.3.0)
+      rubyzilla (~> 0.1)
+      taskmapper (~> 0.8)
 
 GEM
   remote: http://rubygems.org/

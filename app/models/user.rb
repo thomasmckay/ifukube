@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  include IndexedModel
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -12,6 +15,14 @@ class User < ActiveRecord::Base
 
   before_save :encrypt
   after_save :decrypt
+
+  index_options :extended_json=>:extended_index_attrs,
+                :json=>{:only=> [:email]},
+                :display_attrs => [:email]
+
+  def extended_index_attrs
+    {}
+  end
 
   # TODO: add user preference for page size
   def page_size
