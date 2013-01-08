@@ -11,23 +11,6 @@ class TicketsController < ApplicationController
 
   before_filter :find_filter, :only => [:index, :items, :edit]
   before_filter :setup_tupane, :only => [:index, :items, :create]
-  before_filter :find_ticket, :only => [:edit]
-
-  def tmp_get_bugzilla(number)
-    ticket = Ticket.where(:system => :bugzilla, :number => number.to_s).first
-    # TODO: force update
-    #if current_user.bugzilla_email
-    if !ticket && current_user.bugzilla_email
-      bugzilla = TaskMapper.new(:bugzilla, {:username => current_user.bugzilla_email,
-                                            :password => current_user.bugzilla_password,
-                                            :url => 'https://bugzilla.redhat.com'})
-      project = bugzilla.project('Subscription Asset Manager')
-      t = project.ticket(number.to_i)
-      ticket = Ticket.from_taskmapper(t, ticket)
-    end
-
-    ticket
-  end
 
   def index
 
@@ -36,33 +19,34 @@ class TicketsController < ApplicationController
     #Ticket.index.import(Ticket.all) if Ticket.count > 0
 
     # TODO: just temporary to load up some tickets
-    ticket = tmp_get_bugzilla('886253')
-    ticket = tmp_get_bugzilla('873805')
-    ticket = tmp_get_bugzilla('837143')
-    ticket = Ticket.where(:system => :github, :number => '1260').first
-    if !ticket
-      github = TaskMapper.new(:github, {:login => 'Katello'})
-      project = github.project('katello')
-      t = project.ticket(1260)
-      ticket = Ticket.from_taskmapper(t, ticket)
-    end
+    ticket = find_bz('886253')
+    ticket = find_bz('873805')
+    ticket = find_bz('837143')
   end
 
   def items
-    if params[:search] && params[:search].starts_with?('https://bugzilla.redhat.com')
-      http_params = CGI::parse(URI.parse(params[:search]).query)
-      params[:search] = http_params['id'][0]
-      ticket = tmp_get_bugzilla(params[:search])
+    # search can contain BZ id or BZ URL
+    url = false
+    if params[:search]
+      if params[:search].starts_with?('https://bugzilla.redhat.com')
+        url = true
+        http_params = CGI::parse(URI.parse(params[:search]).query)
+        params[:search] = http_params['id'][0]
+      end
     end
+    ticket = find_bz(params[:search]) if url || (number?(params[:search]))
     render_tupane(Ticket, @tupane_options,
                    params[:search], params[:offset], split_order_param(params[:order]),
                    { :default_field => :number})
   end
 
   def edit
+    bz_id = params[:id]
+    bz_id ||= params[:search][:number]
+    @ticket = find_bz(bz_id)
     tickets = [@ticket]
     @ticket.dependencies.each do |num|
-      tickets << tmp_get_bugzilla(num)
+      tickets << find_bz(num)
     end
 
     @locals_hash = { :ticket => @ticket, :tickets => tickets, :filter => @filter }
@@ -124,40 +108,12 @@ class TicketsController < ApplicationController
     end
   end
 
-  def find_ticket
-    if params[:id]
-      @ticket = Ticket.find(params[:id])
-      system = @ticket.system
-      number = @ticket.number
-    else
-      system = params[:ticket][:system].downcase
-      number = params[:ticket][:number]
-      @ticket = Ticket.where(:system => :bugzilla, :number => number).first
-    end
+  def find_bz(id)
+    Ticket.load_or_create_bugzilla(id, current_user)
+  end
 
-    if system == 'bugzilla'
-      # TODO: temporarily always force update from
-      if !@ticket && current_user.bugzilla_email
-      #if current_user.bugzilla_email
-        bugzilla = TaskMapper.new(:bugzilla, {:username => current_user.bugzilla_email,
-                                              :password => current_user.bugzilla_password,
-                                              :url => 'https://bugzilla.redhat.com'})
-
-        t = bugzilla.ticket.find_by_id(number)
-        @ticket = Ticket.from_taskmapper(t, @ticket)
-      end
-    elsif system == 'github'
-      # TODO: temporarily always force update from
-      if !@ticket
-      #if true
-        github = TaskMapper.new(:github, {:login => 'Katello'})
-        project = github.project('katello')
-        t = project.ticket(number)
-        @ticket = Ticket.from_taskmapper(t, @ticket)
-      end
-    end
-
-    @ticket
+  def number?(search)
+    return /^[\d]+$/ === search
   end
 
 end

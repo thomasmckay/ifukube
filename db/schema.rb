@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130103194650) do
+ActiveRecord::Schema.define(:version => 20130108215526) do
+
+  create_table "bugzilla_bugs", :force => true do |t|
+    t.string "number"
+    t.string "state"
+    t.string "system"
+    t.string "title"
+    t.string "description"
+    t.string "status"
+    t.string "project"
+    t.string "component"
+    t.string "priority"
+    t.string "severity"
+    t.string "assignee"
+    t.string "creator"
+    t.string "version"
+  end
 
   create_table "filters", :force => true do |t|
     t.string   "name"
@@ -19,24 +35,6 @@ ActiveRecord::Schema.define(:version => 20130103194650) do
     t.text     "fields"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "tickets", :force => true do |t|
-    t.string   "system"
-    t.string   "number"
-    t.string   "title"
-    t.string   "state"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.string   "description"
-    t.text     "system_data"
-    t.string   "project"
-    t.string   "component"
-    t.string   "priority"
-    t.string   "assignee"
-    t.string   "version"
-    t.string   "severity"
-    t.string   "creator"
   end
 
   create_table "users", :force => true do |t|

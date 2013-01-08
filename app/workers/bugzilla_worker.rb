@@ -3,7 +3,9 @@ class BugzillaWorker
   sidekiq_options queue: high
   sidekiq_options retry: true
 
-  def perform
+  def perform(bz_id)
+    bz = BugzillaBug.find(bz_id)
+    bz.reconcile_with_bugzilla
   end
 
 end
