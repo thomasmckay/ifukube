@@ -19,9 +19,9 @@ class TicketsController < ApplicationController
     #BugzillaBug.index.import(BugzillaBug.all) if BugzillaBug.count > 0
 
     # TODO: just temporary to load up some tickets
-    ticket = find_bz('886253')
-    ticket = find_bz('873805')
-    ticket = find_bz('837143')
+    ticket = find_bugzilla('886253')
+    ticket = find_bugzilla('873805')
+    ticket = find_bugzilla('837143')
   end
 
   def items
@@ -34,7 +34,7 @@ class TicketsController < ApplicationController
         params[:search] = http_params['id'][0]
       end
     end
-    ticket = find_bz(params[:search]) if url || (number?(params[:search]))
+    ticket = find_bugzilla(params[:search]) if url || (number?(params[:search]))
     render_tupane(BugzillaBug, @tupane_options,
                    params[:search], params[:offset], split_order_param(params[:order]),
                    { :default_field => :number})
@@ -43,10 +43,10 @@ class TicketsController < ApplicationController
   def edit
     bz_id = params[:id]
     bz_id ||= params[:search][:number]
-    @ticket = find_bz(bz_id)
+    @ticket = find_bugzilla(bz_id)
     tickets = [@ticket]
     @ticket.dependencies.each do |num|
-      tickets << find_bz(num)
+      tickets << find_bugzilla(num)
     end
 
     @locals_hash = { :ticket => @ticket, :tickets => tickets, :filter => @filter }
@@ -82,7 +82,7 @@ class TicketsController < ApplicationController
   def setup_tupane
     @tupane_options = {
       :name          => 'ticket',
-      :accessor      => 'id',
+      :accessor      => 'number',
       :search_class  => BugzillaBug,
 
       :title         => @filter ? @filter.name.capitalize : _('Tickets'),
@@ -108,7 +108,7 @@ class TicketsController < ApplicationController
     end
   end
 
-  def find_bz(id)
+  def find_bugzilla(id)
     Ticket.load_or_create(id, current_user)
   end
 

@@ -2,7 +2,8 @@
 .content
   -# An object for use in the form
   - bundle = TicketBundle.new tickets
-  = alchemy_form_for(bundle, :action => 'update', :id => 'update_tickets') do |form|
+
+  = alchemy_form_for(bundle) do |form|
     -# TODO: make this a link back to bugzilla/github
     .control_group.informative
       .label
@@ -20,7 +21,7 @@
         %span Here will be placed explanatory information about concrete label term. In this case it would be for "Text input". What is Text input?
       .input
         - tickets.each do |t|
-          %textarea{:id => "title_#{t.id}"}
+          %textarea{:id => "title_#{t.number}"}
             = t.title
         %span.note
           = @ticket.title
@@ -47,7 +48,7 @@
           = _('Status')
       .input
         - tickets.each do |t|
-          = form.select "state_#{t.id}", ['NEW', 'ASSIGNED', 'MODIFIED', 'ON_DEV', 'ON_QA', 'RELEASE_PENDING', 'POST', 'CLOSED'], :selected => t.state
+          = form.select "state_#{t.number}", ['NEW', 'ASSIGNED', 'MODIFIED', 'ON_DEV', 'ON_QA', 'RELEASE_PENDING', 'POST', 'CLOSED'], :selected => t.state
 
     .control_group
       .label
@@ -55,23 +56,22 @@
           = _('Severity')
       .input
         - tickets.each do |t|
-          = form.select "severity_#{t.id}", ['unspecified', 'urgent', 'high', 'medium', 'low'], :selected => t.severity
+          = form.select "severity_#{t.number}", ['unspecified', 'urgent', 'high', 'medium', 'low'], :selected => t.severity
 
-    .control_group.informative
+    .control_group
       .label
-        %label Assigned To
+        %label
+          = _('Assigned To')
       .input
         - tickets.each do |t|
-          %span.value
-            = "#{t.assignee}"
+          %input{:type => 'text', :name => "assignee_#{t.number}", :value => t.assignee}
 
     .control_group.informative
       .label
         %label Reported By
       .input
         - tickets.each do |t|
-          %span.value
-            = "#{t.creator}"
+          %input{:type => 'text', :name => "assignee_#{t.number}", :value => t.assignee}
 
     .control_group.buttons
       .label
