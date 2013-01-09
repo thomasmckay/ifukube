@@ -15,6 +15,18 @@ RailsApp::Application.routes.draw do
       get  '/logout'        => 'sessions#destroy',      :as => :destroy_user_session
     end
 
+  resources :users do
+    collection do
+      get :auto_complete_search
+      get :items
+    end
+    member do
+      get :edit
+      get :new
+      post :create
+      post :update
+    end
+  end
 
   # Tickets
   resources :tickets do

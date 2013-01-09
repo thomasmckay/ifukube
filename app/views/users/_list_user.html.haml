@@ -1,0 +1,5 @@
+.block.tall{:id => "#{name}_#{user.send(accessor)}", |
+          "data-ajax_url" => "#{url_for(:controller=>controller.controller_name)}/#{user.send(accessor)}", |
+          "data-ajax_panelpage" => @tupane_options[:initial_action] |
+         } |
+  = render :partial=>"users/list_user_show", :locals=>{:user => user}

@@ -1,0 +1,22 @@
+= content_for :title do
+  #{user.email}
+
+- if false  # TODO: only for admin
+  = content_for :remove_item do
+    = link_to _("Remove User"), { :controller => "users", :action => "destroy" }, :confirm => _('Are you sure you want to remove this user?'), :method => :delete, :class=>"remove_item", :remote=>true
+
+-# TODO: navigation
+-#= content_for :navigation do
+-#  = render_menu(1..2, user_navigation)
+
+= content_for :content do
+  .content
+    = alchemy_form_for(user) do
+      .control_group.informative
+        .label
+          %label Email
+        .input
+          %span.value
+            = "#{user.email}"
+
+= render :file => "layouts/tupane_layout"

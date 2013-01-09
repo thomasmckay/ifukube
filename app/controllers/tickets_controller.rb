@@ -16,7 +16,7 @@ class TicketsController < ApplicationController
 
     # TODO: need to get rake reindex to work
     #Tire.index("_all").delete
-    #Ticket.index.import(Ticket.all) if Ticket.count > 0
+    #BugzillaBug.index.import(BugzillaBug.all) if BugzillaBug.count > 0
 
     # TODO: just temporary to load up some tickets
     ticket = find_bz('886253')
@@ -35,7 +35,7 @@ class TicketsController < ApplicationController
       end
     end
     ticket = find_bz(params[:search]) if url || (number?(params[:search]))
-    render_tupane(Ticket, @tupane_options,
+    render_tupane(BugzillaBug, @tupane_options,
                    params[:search], params[:offset], split_order_param(params[:order]),
                    { :default_field => :number})
   end
@@ -83,7 +83,7 @@ class TicketsController < ApplicationController
     @tupane_options = {
       :name          => 'ticket',
       :accessor      => 'id',
-      :search_class  => Ticket,
+      :search_class  => BugzillaBug,
 
       :title         => @filter ? @filter.name.capitalize : _('Tickets'),
       :columns       => ['number'],
@@ -109,7 +109,7 @@ class TicketsController < ApplicationController
   end
 
   def find_bz(id)
-    Ticket.load_or_create_bugzilla(id, current_user)
+    Ticket.load_or_create(id, current_user)
   end
 
   def number?(search)

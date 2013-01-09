@@ -2,7 +2,7 @@ task :reindex do
 
   Tire.index("_all").delete
 
-  model_list = ['IndexedModel', 'Ticket']
+  model_list = ['IndexedModel', 'Ticket', 'User']
 
   Dir.glob('./app/models/*.rb').each { |file| require file }
   models = ActiveRecord::Base.subclasses.sort{|a,b| a.name <=> b.name}
