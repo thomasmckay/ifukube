@@ -12,5 +12,9 @@ Create custom config
 
       % cp config/ifukube.yml.example config/ifukube.yml
 
+Setup redis
+      % yum install redis
+      % service redis start
+
 ## Based On OpenShift Rails Sample App ##
 https://github.com/openshift/rails-example

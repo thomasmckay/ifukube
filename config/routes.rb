@@ -1,10 +1,12 @@
+require 'sidekiq/web'
+
 RailsApp::Application.routes.draw do
 
   # Devise for user login
-  devise_for :user, 
-    :path_names => {:sign_in => 'login', 
-                    :sign_out => 'logout', 
-                    :sign_up => 'register'}, 
+  devise_for :user,
+    :path_names => {:sign_in => 'login',
+                    :sign_out => 'logout',
+                    :sign_up => 'register'},
     :controllers => { :sessions => 'sessions' } do
 
       # Sessions
@@ -50,4 +52,6 @@ RailsApp::Application.routes.draw do
 
   root :to => 'tickets#index'
 
+  # sidekiq web interface
+  mount Sidekiq::Web, at: '/sidekiq'
 end

@@ -79,6 +79,10 @@ end
 
 gem 'tire'
 
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+
 # Handy when bringing in external erb
 # rake haml:convert_erbs
 gem 'erb2haml', :group => :development
