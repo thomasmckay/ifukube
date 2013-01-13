@@ -71,7 +71,7 @@
         %label Reported By
       .input
         - tickets.each do |t|
-          %input{:type => 'text', :name => "assignee_#{t.number}", :value => t.assignee}
+          %input{:type => 'text', :name => "reporter_#{t.number}", :value => t.assignee}
 
     .control_group.buttons
       .label

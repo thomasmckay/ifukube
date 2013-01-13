@@ -16,16 +16,7 @@ class TicketBundlesController < ApplicationController
     end
 
     updates.each do |number, attributes|
-      ticket = BugzillaBug.find_by_number(number)
-
-      bugzilla = TaskMapper.new(:bugzilla, {:username => current_user.bugzilla_email,
-                                            :password => current_user.bugzilla_password,
-                                            :url => 'https://bugzilla.redhat.com'})
-      t = bugzilla.ticket.find_by_id(number)
-
-      attributes.merge!({:ids => [number]})
-
-      # Map attributes
+      # Clean up attributes
       if attributes.has_key? 'assignee'
         attributes['assigned_to'] = attributes['assignee']
         attributes.delete('assignee')
@@ -35,7 +26,7 @@ class TicketBundlesController < ApplicationController
         attributes.delete('state')
       end
 
-      r = t.send_update attributes
+      sync = BugzillaWorker.perform_async(current_user.id, :save, number, attributes)
     end
   end
 

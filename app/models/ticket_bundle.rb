@@ -27,38 +27,4 @@ class TicketBundle
     false
   end
 
-=begin
-  def state_6
-    return 'NEW'
-  end
-
-  def state_4
-    return 'POST'
-  end
-
-  def state_6= v
-    return 'NEW'
-  end
-
-  def state_4= v
-    return 'POST'
-  end
-=end
-
-=begin
-  @_tickets = []
-
-  def tickets=(tickets)
-    @_tickets = tickets
-  end
-
-  def tickets
-    @_tickets
-  end
-
-  def state
-    x = 1
-  end
-=end
-
 end
