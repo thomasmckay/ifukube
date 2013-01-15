@@ -11,14 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115191037) do
+ActiveRecord::Schema.define(:version => 20130115202045) do
 
   create_table "async_jobs", :force => true do |t|
     t.string   "sidekiq"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.integer  "bugzilla_bug_id"
     t.integer  "user_id"
+    t.string   "action"
+    t.text     "updated_attributes"
   end
 
   create_table "bugzilla_bugs", :force => true do |t|

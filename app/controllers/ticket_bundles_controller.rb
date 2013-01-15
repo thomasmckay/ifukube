@@ -26,7 +26,7 @@ class TicketBundlesController < ApplicationController
         attributes.delete('state')
       end
 
-      sync = BugzillaWorker.perform_async(current_user.id, :save, number, attributes)
+      AsyncJob.save_bugzilla(current_user.id, number, attributes)
     end
   end
 
