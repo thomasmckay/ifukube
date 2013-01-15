@@ -11,6 +11,8 @@ class BugzillaBug < ActiveRecord::Base
   attr_accessible :creator
   attr_accessible :version
 
+  has_many :async_job, :as => :jobs
+
   index_options :extended_json=>:extended_index_attrs,
                 :json=>{:only=> [:number, :state, :system, :title, :description]},
                 :display_attrs => [:number, :state, :system, :title, :description]

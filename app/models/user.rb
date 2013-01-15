@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   before_save :encrypt
   after_save :decrypt
 
+  has_many :async_job
+
   index_options :extended_json=>:extended_index_attrs,
                 :json=>{:only=> [:email]},
                 :display_attrs => [:email]
