@@ -1,7 +1,9 @@
 class BugzillaWorker
   include Sidekiq::Worker
+  include Sidekiq::Status::Worker
+
   sidekiq_options :queue => :high
-  sidekiq_options :retry => true
+  sidekiq_options :retry => false
 
   def perform(user_id, action, number, attributes={})
     Sidekiq.logger.info "abc"

@@ -80,6 +80,7 @@ end
 gem 'tire'
 
 gem 'sidekiq'
+gem 'sidekiq-status'
 gem 'sinatra', require: false
 gem 'slim'
 

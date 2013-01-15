@@ -175,6 +175,8 @@ GEM
       multi_json (~> 1)
       redis (~> 3)
       redis-namespace
+    sidekiq-status (0.1.0)
+      sidekiq (~> 2.2)
     simple-navigation (3.9.0)
       activesupport (>= 2.3.2)
     simple_form (2.0.4)
@@ -241,6 +243,7 @@ DEPENDENCIES
   rubyzilla!
   sass-rails (~> 3.2.3)
   sidekiq
+  sidekiq-status
   simple-navigation (>= 3.3.4)
   sinatra
   slim
